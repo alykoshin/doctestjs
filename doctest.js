@@ -704,7 +704,8 @@ Runner.prototype = {
           }
         }
       }
-      var context = require('vm').Script.createContext();
+      //var context = require('vm').Script.createContext();
+      var context = require('vm').createContext();
       extend(context, globs);
       return context;
     } else {
@@ -903,8 +904,10 @@ Runner.prototype = {
       if (typeof window == "undefined") {
         var vm = require('vm');
 
-        if (! (context instanceof vm.Script.createContext().constructor)) {
-            throw "context must be created with vm.Script.createContext()";
+        //if (! (context instanceof vm.Script.createContext().constructor)) {
+        if (! (context instanceof vm.createContext().constructor)) {
+            //throw "context must be created with vm.Script.createContext()";
+            throw "context must be created with vm.createContext()";
         }
 
         // Prepare context to evaluate `expr` in. Mostly follows CoffeeScript
